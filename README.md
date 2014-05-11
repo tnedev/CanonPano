@@ -19,6 +19,8 @@ LCD: Any 16x2 lcd will do
 Keypad: 12 keys
 H-Bridge driver: https://www.sparkfun.com/products/315
 
-
+The system contains 6 prebuild programs for taking panoramic photos. 
+All of the variables are configurable with the keypad/lcd interface and save in the EEPROM of the Arduino. 
+More details on the functionality in the txt file. 
 
 Cannon DSLR Panoramic System
