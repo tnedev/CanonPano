@@ -1,0 +1,233 @@
+User can select one of the following 6 shooting modes
+User can customize the parameters for each shooting mode as he wishes
+
+
+MODE 1: PANO360
+---------------
+
+This is normal mode. Take one photo, rotate to next position, repeat
+
+Parameters:
+x1: Initial Startup Delay: [10 sec]
+x2: Number of Shots/Panorama: [6]
+x3: Pause Time Before shutter release: [1 sec]
+x4: Focus before shutter release: [No]
+x5: Pause Time After shutter release: [1 sec]
+x6: Number of of 360-degree Panoramas: [1]
+x7: Time to pause between panoramas: [0]
+
+
+Press start button
+Wait x1
+For (Panorama_Counter = 1 to x6, step 1)
+	For (Shot_Counter = 1 to x2, step 1)
+		Rotate (360/x2) degrees
+		Wait x3
+		If (x4 = Yes)
+			Send signal to camera through the release cable to focus
+			Wait 1 sec to allow the camera to achieve focus
+		EndIf
+		Release shutter
+		Wait x5
+	EndFor
+	If (Panorama_Counter < x6)
+		Wait x7
+	EndIf
+EndFor
+
+
+MODE 2: PANO360 HDR
+-------------------
+
+Take x8 photos, rotate to next position, repeat
+
+Parameters:
+x1: Initial Startup Delay: [10 sec]
+x2: Number of Shots/Panorama: [6]
+x3: Pause Time Before shutter release: [1 sec]
+x4: Focus before shutter release: [No]
+x8: Number of shots at each position: [3]
+x5: Pause Time After shutter release: [1 sec]
+x6: Number of of 360-degree Panoramas: [1]
+x7: Time to pause between panoramas: [0]
+
+
+Press start button
+Wait x1
+For (Panorama_Counter = 1 to x6, step 1)
+	For (Exposure_Counter = 1 to x2, step 1) //1 exposure = x8 photos
+		Rotate (360/x2) degrees
+		Wait x3
+		If (Focus before shutter release = Yes)
+			Send signal to camera through the release cable to focus
+			Wait 1 sec to allow the camera to achieve focus
+		EndIf
+		For (shot_Counter = 1 to x8, step 1)
+			Release shutter
+		EndFor
+		Wait x5
+	EndFor
+	If (Panorama_Counter < x6)
+		Wait x7
+	EndIf
+EndFor
+
+
+
+MODE 3: PANO360 CR (continuous rotation)
+----------------------------------------
+
+Take x2 photos while rotating, for fast action panos
+
+Parameters:
+x1: Initial Startup Delay: [10 sec]
+x2: Number of Shots: [6]
+x9: Speed: Time to take to complete full circle (sec) [5 sec]
+x6: Number of 360-degree Panoramas: [1]
+x7: Time to pause between panoramas: [0]
+
+
+Press start button
+Wait x1
+For (Panorama_Counter = 1 to x6, step 1)
+	Rotate with speed (360/x9) degrees/sec
+	For (Shot_Counter = 1 to x2, step 1)
+		If (position = Shot_Counter * (360/x2))
+			Release shutter
+		Endif
+	EndFor
+	If (Panorama_Counter < x6)
+		If ( x7 > 0 )
+			Stop rotating
+			Wait x7
+		Endif
+	EndIf
+EndFor
+
+
+MODE 4: PARTIAL PANO
+-------------------
+
+Normal Partial Panorama < 360 degrees, 1 photo per position
+
+Parameters:
+x1: Initial Startup Delay: [10 sec]
+x10: Panorama Arc Width [120 degrees]
+x2: Number of Shots: [12]
+x3: Pause Time Before shutter release: [1 sec]
+x4: Focus before shutter release: [No]
+x5: Pause Time After shutter release: [1 sec]
+x6: Number of Panoramas: [1]
+x7: Time to pause between panoramas: [0]
+x11: Return to initial position after shooting sequence [Yes]
+
+
+Press start button
+Wait x1
+For (Panorama_Counter = 1 to x6, step 1)
+	For (Shot_Counter = 1 to x2, step 1)
+		Rotate (x10/x2) degrees
+		Wait x3
+		If (Focus before shutter release = Yes)
+			Send signal to camera through the release cable to focus
+			Wait 1 sec to allow the camera to achieve focus
+		EndIf
+		Release shutter
+		Wait x5
+	EndFor
+	If (Panorama_Counter < x6)
+		Rotate to initial position
+		Wait x7
+	EndIf
+EndFor
+If (x11 = Yes)
+	Rotate to initial position
+EndIf
+
+
+MODE 5: PARTIAL PANO HDR
+------------------------
+
+HDR Partial Panorama < 360 degrees, x8 photos per position
+
+Parameters:
+x1: Initial Startup Delay: [10 sec]
+x10: Panorama Arc Width [120 degrees]
+x2: Number of Shots: [12]
+x3: Pause Time Before shutter release: [1 sec]
+x4: Focus before shutter release: [No]
+x8: Number of shots at each position: [3]
+x5: Pause Time After shutter release: [1 sec]
+x6: Number of Panoramas: [1]
+x7: Time to pause between panoramas: [0]
+x11: Return to initial position after shooting sequence [Yes]
+
+
+Press start button
+Wait x1
+For (Panorama_Counter = 1 to x6, step 1)
+	For (Exposure_Counter = 1 to x2, step 1) //1 exposure = x8 photos
+		Rotate (x10/x2) degrees
+		Wait x3
+		If (Focus before shutter release = Yes)
+			Send signal to camera through the release cable to focus
+			Wait 1 sec to allow the camera to achieve focus
+		EndIf
+		For (shot_Counter = 1 to x8, step 1)
+			Release shutter
+		EndFor
+		Wait x5
+	EndFor
+	If (Panorama_Counter < x6)
+		Rotate to initial position
+		Wait x7
+	EndIf
+EndFor
+If (Return to initial position = Yes)
+	Rotate to initial position
+EndIf
+
+
+MODE 6: INTERVALOMETER (NO ROTATION)
+-----------------------------------
+Parameters:
+x1: Initial Startup Delay: [10 sec]
+x12: Bulb Mode: [No]
+x13: Exposure time
+x14: Interval: [10 sec]
+x15: HDR Mode: [No]
+x16: HDR photos: [3]
+x4: Focus before shutter release: [Yes]
+x17: Total Number of Exposures: [10] 
+
+Note1: If HDR is enabled, one exposure consists of x16 photos),otherwise 1 exposure = 1 photo
+Note2: Bulb exposure and HDR are mutually exlusive, can't have both enabled
+
+Press start button
+Wait x1
+For (Exposure_Counter = 1 to x17, step 1)
+	If (x4 = Yes)
+		Send signal to camera through the release cable to focus
+		Wait 1 sec to allow the camera to achieve focus
+	EndIf
+
+	If (x15 = Yes) //HDR mode
+		For (HDR_Counter = 1 to x16, step 1)
+			Release Shutter
+		EndFor
+	EndIf
+
+	If (x12 = yes) //Bulb exposure
+		Keep Shutter open x13
+	EndIf
+
+	If (x15 = No AND x12 = No) //Normal mode
+		Release Shutter
+	EndIf
+	
+	Wait x14
+EndFor
+		
+	
+	
+

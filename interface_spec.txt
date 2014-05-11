@@ -1,0 +1,312 @@
+
+
+Startup Screen
+--------------
+Mode: 1-360PANO   
+1:OK *:Ch #:Ed
+
+Notes:
+This is the first screen that appears when the user turs on the 
+controller. It displays the active mode and options:
+
+1:OK - Pressing 1 starts the shooting sequence for the active mode
+*:Ch - Pressing * goes to the Mode Change Screen
+#:Ed - Pressing # goes to Parameter Edit Screen for the active mode
+Pressing any other key does nothing.
+
+How to display the Modes on the LCD so they do not exceed the 16-character limit:
+Mode 1: 1-360PANO
+Mode 2: 2-360-HDR
+Mode 3: 3-360-CR
+Mode 4: 4-PARTIAL
+Mode 5: 5-PAR-HDR
+Mode 6: 6-INTERVL
+
+
+Error Screen:
+-------------
+Any time the user enters a value that is out of the Range of 
+acceptable values, the error screen appears for 3 sec:
+
+*** ERROR ***
+Invalid value
+
+The user is then taken back to the screen where he was to enter a correct value.
+
+
+Mode Change Screen
+------------------
+Mode[1]: 
+*:OK #Clear
+
+Notes:
+Here the user can select the active mode.
+The number in the bracket is the current value.
+A blinking block or underscore should appear to indicate that 
+the system is waiting for user input.
+
+Scenarios:
+1. User enters the mode number he wishes to make active (1 to 6)
+and presses * to store the new value and return to the Startup Screen
+2. User presses * without entering a value. He returns to Startup
+Screen without modification of the current value
+3. User enters 0 and presses *. The Reset Screen appears.
+
+The # key clears the last number entered by the user on each press,
+it's like the backspace key on the PC keyboard
+
+
+Reset Screen
+------------
+Reset all?
+*:OK  #Cancel
+
+Scenarios:
+1. User presses * to reset all parameters to default values and 
+returns to the Startup Screen
+2. User presses # and returns to the Mode Change Screen without
+resetting any parameters
+Pressing any other key does nothing.
+
+
+Parameter Edit Screens for Mode 1-360PANO
+-------------------------------------------
+Ts[10]:
+*:Next #:Clear
+
+Nf[6]: 
+*:Next #:Clear
+
+Tb[1]:
+*:Next #:Clear
+
+Fb[0]:
+*:Next #:Clear
+
+Ta[1]:
+*:Next #:Clear
+
+Np[1]:
+*:Next #:Clear
+
+Tp[0]:
+*:Next #:Clear
+
+Notes:
+- Number in brackets is current value.
+- Entering a new value and pressing * stores the new parameter value
+and takes user to the next parameter edit screen
+- Pressing * without entering a new value preserves the current
+value and takes user to the next parameter edit screen.
+- The # key clears the last number entered by the user on each press,
+it's like the backspace key on the PC keyboard
+- On the last Parameter Edit Screen (in this case the Tp Edit Screen)
+pressing the * key takes the user to the Parameters End Screen
+
+Parameters End Screen
+---------------------
+No more params
+*:OK #:Re-Edit
+
+* takes the user to the Startup Screen
+# takes user to the first Parameter Edit Screen
+Pressing any other key does nothing.
+
+Parameters:
+Ts = Initial Startup Delay - Range: 0 - 99999
+Nf = Number of Photos per 360 panorama - Range: 2 - 180
+Tb = Pause Time Before shutter release - Range: 0 - 99999
+Fb = Focus before shutter release - Range: 0 - 1 (0=No, 1=Yes)
+Ta = Pause Time After shutter release - Range: 0 - 99999
+Np = Number of of 360-degree Panoramas - Range: 1 - 99999
+Tp = Time to pause between panoramas - Range: 1 - 99999
+
+
+The Parameter Edit Screens for the other modes follow the same 
+logic described above.
+
+Parameter Edit Screens for Mode 2-360-HDR
+---------------------------------------
+Ts[10]:
+*:Next #:Clear
+
+Nf[6]: 
+*:Next #:Clear
+
+Tb[1]:
+*:Next #:Clear
+
+Fb[0]:
+*:Next #:Clear
+
+Nh[3]:
+*:Next #:Clear
+
+Ta[1]:
+*:Next #:Clear
+
+Np[1]:
+*:Next #:Clear
+
+Tp[0]:
+*:Next #:Clear
+
+
+Parameters:
+Ts = Initial Startup Delay - Range: 0 - 99999
+Nf = Number of Photos per 360 panorama - Range: 2 - 180
+Tb = Pause Time Before shutter release - Range: 0 - 99999
+Fb = Focus before shutter release - Range: 0 - 1 (0=No, 1=Yes)
+Nh = Number of shots at each position - Range: 1 - 99999
+Ta = Pause Time After shutter release - Range: 0 - 99999
+Np = Number of of 360-degree Panoramas - Range: 1 - 99999
+Tp = Time to pause between panoramas - Range: 1 - 99999
+
+
+Parameter Edit Screens for Mode 3-360-CR
+--------------------------------------
+Ts[10]:
+*:Next #:Clear
+
+Nf[6]: 
+*:Next #:Clear
+
+Tr[5]:
+*:Next #:Clear
+
+Np[1]:
+*:Next #:Clear
+
+Tp[0]:
+*:Next #:Clear
+
+Parameters:
+Ts = Initial Startup Delay - Range: 0 - 99999
+Nf = Number of Photos per 360 panorama - Range: 2 - 180
+Tr = Time (sec) to complete full circle - Range: 4 - 90 (not less than 4 or Nf/2, whichever is higher)
+Fb = Focus before shutter release - Range: 0 - 1 (0=No, 1=Yes)
+Ta = Pause Time After shutter release - Range: 0 - 99999
+Np = Number of of 360-degree Panoramas - Range: 1 - 3
+Tp = Time to pause between panoramas - Range: 1 - 99999
+
+
+Parameter Edit Screens for Mode 4-PARTIAL
+-----------------------------------------
+Ts[10]:
+*:Next #:Clear
+
+Pw[120]: 
+*:Next #:Clear
+
+Nf[10]: 
+*:Next #:Clear
+
+Tb[1]:
+*:Next #:Clear
+
+Fb[0]:
+*:Next #:Clear
+
+Ta[1]:
+*:Next #:Clear
+
+Np[1]:
+*:Next #:Clear
+
+Tp[0]:
+*:Next #:Clear
+
+Ri[1]:
+*:Next #:Clear
+
+
+Parameters:
+Ts = Initial Startup Delay - Range: 0 - 99999
+Pw = Panorama Arc Width (degrees) - Range: 2 - 358
+Nf = Number of Photos per panorama - Range: 1 - 180
+Tb = Pause Time Before shutter release - Range: 0 - 99999
+Fb = Focus before shutter release - Range: 0 - 1 (0=No, 1=Yes)
+Ta = Pause Time After shutter release - Range: 0 - 99999
+Np = Number of Panoramas - Range: 1 - 99999
+Tp = Time to pause between panoramas - Range: 1 - 99999
+Ri = Return to initial position after shooting sequence - Range: 0 - 1 (0=No, 1=Yes)
+
+
+Parameter Edit Screens for Mode 5-PAR-HDR
+---------------------------------------------
+Ts[10]:
+*:Next #:Clear
+
+Pw[120]: 
+*:Next #:Clear
+
+Nf[10]: 
+*:Next #:Clear
+
+Tb[1]:
+*:Next #:Clear
+
+Fb[0]:
+*:Next #:Clear
+
+Nh[3]:
+*:Next #:Clear
+
+Ta[1]:
+*:Next #:Clear
+
+Np[1]:
+*:Next #:Clear
+
+Tp[0]:
+*:Next #:Clear
+
+Ri[1]:
+*:Next #:Clear
+
+Parameters:
+Ts = Initial Startup Delay - Range: 0 - 99999
+Pw = Panorama Arc Width (degrees) - Range: 2 - 358
+Nf = Number of Photos per panorama - Range: 1 - 180
+Tb = Pause Time Before shutter release - Range: 0 - 99999
+Fb = Focus before shutter release - Range: 0 - 1 (0=No, 1=Yes)
+Nh = Number of shots at each position - Range: 1 - 99999
+Ta = Pause Time After shutter release - Range: 0 - 99999
+Np = Number of Panoramas - Range: 1 - 99999
+Tp = Time to pause between panoramas - Range: 1 - 99999
+Ri = Return to initial position after shooting sequence - Range: 0 - 1 (0=No, 1=Yes)
+
+
+Parameter Edit Screens for Mode 6-INTERVL
+-------------------------------------------
+Ts[10]:
+*:Next #:Clear
+
+Bm[0]:
+*:Next #:Clear
+
+If[10]:
+*:Next #:Clear
+
+Fb[0]:
+*:Next #:Clear
+
+Nh[0]:
+*:Next #:Clear
+
+Nf[10]:
+*:Next #:Clear
+
+Parameters:
+Ts = Initial Startup Delay - Range: 0 - 99999
+Bm = Bulb Mode - Range 0 - 99999 (0=No, value>0 is time in sec to keep shutter open)
+If = Interval between photos (sec) - Range: 0 - 99999
+Fb = Focus before shutter release - Range: 0 - 1 (0=No, 1=Yes)
+Nh = Number of HDR shots - Range 0 - 99999 (0=No HDR, value>0 is number of photos at each interval)
+Nf = Total Number of Photos - Range: 0 - 99999
+
+Notes: 
+Bulb mode and HDR are mutually exclusive. Can't have both.
+If Bm > 0, Nh =0 and Nh parameter edit screen is skipped
+If Nh > 0, Bm = 0 and Bm parameter edit screen is skipped
+
